@@ -9,7 +9,7 @@ async function bootstrap() {
       AppModule,
   );
   app.useGlobalFilters(new NotFoundExceptionFilter());
-  app.useStaticAssets(join(__dirname, '/../NestVuePlayersFront/d/dist'));
+  app.useStaticAssets(join(__dirname, '/../NestVuePlayersFront/dist'));
   app.enableCors();
   await app.listen(3000);
 }

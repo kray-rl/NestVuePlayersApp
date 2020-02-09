@@ -10,8 +10,5 @@ export const PlayerSchema = new mongoose.Schema({
     idInstance: Number,
     level: String,
     levelOrder: Number,
-    resources: [{
-      resource: String,
-      value: Number
-    }]
+    resources: Array
 })
