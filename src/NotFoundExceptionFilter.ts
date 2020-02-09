@@ -8,6 +8,6 @@ export class NotFoundExceptionFilter implements ExceptionFilter {
     catch(exception: HttpException, host: ArgumentsHost) {
         const ctx = host.switchToHttp();
         const response = ctx.getResponse();
-        response.sendFile(path.resolve('app-frontend/dist/index.html'));
+        response.sendFile(path.resolve('NestVuePlayersFront/dist/index.html'));
     }
 }

@@ -1,0 +1,3 @@
+[submodule "NestVuePlayersFront"]
+	path = NestVuePlayersFront
+	url = https://github.com/KrayIsPerfect/NestVuePlayersFront
