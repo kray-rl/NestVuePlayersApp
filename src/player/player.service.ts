@@ -19,12 +19,12 @@ export class PlayerService {
 
     playersToNormal(playersFromBase){
         const playersToFront = [];
-        for(let player of playersFromBase){
-            let expCycle: number = 0;
-            let moneyCycle: number = 0;
+        for(const player of playersFromBase){
+            let expCycle = 0;
+            let moneyCycle = 0;
 
 
-            for (let item of JSON.parse(player.resources)){
+            for (const item of JSON.parse(player.resources)){
                 if (item.resource == 'ACTIVERATE' || item.resource == 'PASSIVERATE'){
                     expCycle += item.value;
                 }
@@ -39,10 +39,10 @@ export class PlayerService {
             })
         }
         playersToFront.sort(function(a, b) {
-            return (b["exp"]+b["money"]) - (a["exp"]+a["money"]);
+            return b["exp"] - a["exp"] || b["money"] - a["money"];
         });
         playersToFront.forEach((el, i, plrs) =>{
-            if ( i != 0 && ((el.exp == plrs[i-1].exp && el.money == plrs[i-1].money) || el.exp+el.money == plrs[i-1].exp+plrs[i-1].money)) el.place = plrs[i-1].place
+            if ( i != 0 && el.exp == playersToFront[i-1].exp && el.money == playersToFront[i-1].money) el.place = playersToFront[i-1].place
             else el.place = i+1
         })
         return playersToFront;
