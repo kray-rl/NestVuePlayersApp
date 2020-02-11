@@ -16,3 +16,7 @@ cd ..
 npm run start
 
 -> localhost:3000
+
+#db 
+dbName: nestTestApp
+collectionName: players
