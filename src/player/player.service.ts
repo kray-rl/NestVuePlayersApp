@@ -14,7 +14,7 @@ export class PlayerService {
     // fetch top players
     async getTopPlayers(): Promise<Player[]> {
         const players = await this.playersToNormal(await this.playerModel.find().exec());
-        return players.slice(0,5);
+        return players.filter(player => player.place <= 5);
     }
 
     playersToNormal(playersFromBase){
@@ -41,9 +41,10 @@ export class PlayerService {
         playersToFront.sort(function(a, b) {
             return b["exp"] - a["exp"] || b["money"] - a["money"];
         });
-        playersToFront.forEach((el, i, plrs) =>{
-            if ( i != 0 && el.exp == playersToFront[i-1].exp && el.money == playersToFront[i-1].money) el.place = playersToFront[i-1].place
-            else el.place = i+1
+        playersToFront.forEach((el, i, playersToFront) => {
+            if (i != 0 && el.exp == playersToFront[i - 1].exp && el.money == playersToFront[i - 1].money) el.place = playersToFront[i - 1].place;
+            else if (i == 0) el.place = 1;
+            else el.place = playersToFront[i-1].place + 1;
         })
         return playersToFront;
     }
